@@ -10,10 +10,11 @@ TESTFLAGS	:= -L bin/maths -lsimplemaths
 
 NASM		:= nasm
 LD			:= ld
+CC			:= gcc-8
 LIBTOOL		:= libtool
 
 NASMFLAGS	:= -f macho64
-LDFLAGS		:= -lSystem /usr/lib/crt1.o
+LDFLAGS		:= -lSystem /usr/lib/crt1.o # -macosx_version_min 10.14.0
 
 
 all: dir link
@@ -53,6 +54,7 @@ build/tests/%.o: tests/%.asm
 
 bin/tests/%: build/tests/%.o
 	$(LD) $(LDFLAGS) $(TESTFLAGS) -o $@ $<
+	#$(CC) $(CCFLAGS) $(TESTFLAGS) -o $@ $<
 
 clean:
 	rm -rf $(STATIC) $(DYLIB)
