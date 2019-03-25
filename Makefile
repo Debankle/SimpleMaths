@@ -1,19 +1,19 @@
 ASMFILES	:= $(wildcard src/*.asm)
 OBJFILES	:= $(patsubst src/%.asm, build/src/%.o, $(ASMFILES))
-DYLIB		:= bin/maths/libmaths.dylib
-STATIC		:= bin/maths/libmaths.a
+STATIC		:= bin/maths/libsimplemaths.a
+DYLIB		:= bin/maths/libsimplemaths.dylib
 
 TESTASM		:= $(wildcard tests/*.asm)
 TESTOBJS	:= $(patsubst tests/%.asm, build/tests/%.o, $(TESTASM))
 TESTEXES	:= $(patsubst build/tests/%.o, bin/tests/%, $(TESTOBJS))
-TESTFLAGS	:= -L bin/maths -lmaths
+TESTFLAGS	:= -L bin/maths -lsimplemaths
 
 NASM		:= nasm
 LD			:= ld
 LIBTOOL		:= libtool
 
 NASMFLAGS	:= -f macho64
-LDFLAGS		:= -lSystem /usr/lib/crt1.o -macosx_version_min 10.14
+LDFLAGS		:= -lSystem /usr/lib/crt1.o
 
 
 all: dir link
