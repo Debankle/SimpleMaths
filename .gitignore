@@ -1,0 +1,6 @@
+# Ignore Compile Dirs
+bin/
+build/
+
+# Ignore IDE folders
+.vscode/
